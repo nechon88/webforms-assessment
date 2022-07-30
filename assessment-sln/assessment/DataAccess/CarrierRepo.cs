@@ -6,7 +6,7 @@ using assessment.Models;
 
 namespace assessment.DataAccess
 {
-    public class CarrierRepoInMem
+    public class CarrierRepoInMem : ICarrierRepo
     {
         private List<Carrier> _list;
 

@@ -193,6 +193,7 @@
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\CarrierRepo.cs" />
+    <Compile Include="DataAccess\ICarrierRepo.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
