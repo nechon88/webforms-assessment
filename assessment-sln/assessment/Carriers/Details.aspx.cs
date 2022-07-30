@@ -12,8 +12,12 @@ namespace assessment.Carriers
 {
     public partial class Details : System.Web.UI.Page
     {
-        CarrierRepoInMem repo = new CarrierRepoInMem();
-        private Carrier _carrier;
+        private readonly ICarrierRepo _repo;
+
+        public Details(ICarrierRepo repo)
+        {
+            _repo = repo;
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,7 +29,7 @@ namespace assessment.Carriers
         // or be decorated with a value provider attribute, e.g. [QueryString]int id
         public assessment.Models.Carrier CarrierDetail_GetItem([QueryString("id")] int? id)
         {
-            if (id.HasValue) return repo.GetByID(id.Value);
+            if (id.HasValue) return _repo.GetByID(id.Value);
             return null;
         }
 
@@ -34,7 +38,7 @@ namespace assessment.Carriers
         {
             assessment.Models.Carrier item = null;
             // Load the item here, e.g. item = MyDataLayer.Find(id);
-            item = repo.GetByID(CarrierID);
+            item = _repo.GetByID(CarrierID);
             if (item == null)
             {
                 // The item wasn't found
@@ -45,14 +49,14 @@ namespace assessment.Carriers
             if (ModelState.IsValid)
             {
                 // Save changes here, e.g. MyDataLayer.SaveChanges();
-                repo.Update(item);
+                _repo.Update(item);
             }
         }
 
         // The id parameter name should match the DataKeyNames value set on the control
         public void CarrierDetail_DeleteItem(int CarrierID)
         {
-            repo.Delete(CarrierID);
+            _repo.Delete(CarrierID);
         }
     }
 }

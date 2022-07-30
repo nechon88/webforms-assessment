@@ -12,7 +12,13 @@ namespace assessment.Carriers
 {
     public partial class ViewList : System.Web.UI.Page
     {
-        CarrierRepoInMem repo = new CarrierRepoInMem();
+        private readonly ICarrierRepo _repo;
+
+        public ViewList(ICarrierRepo repo)
+        {
+            _repo = repo;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
            
@@ -26,7 +32,7 @@ namespace assessment.Carriers
         //     string sortByExpression
         public IQueryable<assessment.Models.Carrier> CarrierListView_GetData()
         {
-            List<Carrier> list = repo.GetAll();
+            List<Carrier> list = _repo.GetAll();
             EnumerableQuery<Carrier> ret = new EnumerableQuery<Carrier>(list);
             return ret;
         }
