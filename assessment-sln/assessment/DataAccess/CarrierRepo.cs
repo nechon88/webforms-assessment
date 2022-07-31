@@ -37,7 +37,30 @@ namespace assessment.DataAccess
 
         public Carrier Create(Carrier carrier)
         {
-            return new Carrier();
+            Carrier ret = null;
+            using (var ctx = new SqlConnection(_dbConfig.ConnectionString))
+            using (var cmd = ctx.CreateCommand())
+            {
+                ctx.Open();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Carriers_Insert";
+                cmd.Parameters.AddWithValue("@CarrierName", carrier.CarrierName);
+                cmd.Parameters.AddWithValue("@Address", carrier.Address);
+                cmd.Parameters.AddWithValue("@Address2", carrier.Address2);
+                cmd.Parameters.AddWithValue("@City", carrier.City);
+                cmd.Parameters.AddWithValue("@State", carrier.State);
+                cmd.Parameters.AddWithValue("@Zip", carrier.Zip);
+                cmd.Parameters.AddWithValue("@Contact", carrier.Contact);
+                cmd.Parameters.AddWithValue("@Phone", carrier.Phone);
+                cmd.Parameters.AddWithValue("@Fax", carrier.Fax);
+                cmd.Parameters.AddWithValue("@Email", carrier.Email);
+                using (var rdr = cmd.ExecuteReader())
+                {
+                    if (rdr.Read())
+                        ret = GetFromReader(rdr);
+                }
+            }
+            return ret;
         }
 
         public int Delete(int carrierID)

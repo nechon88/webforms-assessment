@@ -61,6 +61,7 @@
                 </tr>
             </ItemTemplate>
         </asp:ListView>
+        <a class="btn btn-primary" href="/Carriers/Details.aspx?mode=insert">Add New</a>
 <%--        <asp:GridView runat="server" ID="CarriersGrid" DataKeyNames="CarrierID"
             ItemType="assessment.Models.Carrier" SelectMethod="CarrierListView_GetData"
             AutoGenerateColumns="false">

@@ -23,6 +23,14 @@ namespace assessment.Carriers
         {
             if (Page.IsPostBack)
                 return;
+            if (!string.IsNullOrEmpty(Request.QueryString["mode"]))
+            {
+                string mode = Request.QueryString["mode"];
+                if (mode == "insert")
+                {
+                    CarrierDetail.ChangeMode(FormViewMode.Insert);
+                }
+            }
         }
 
         // The id parameter should match the DataKeyNames value set on the control
@@ -57,6 +65,19 @@ namespace assessment.Carriers
         public void CarrierDetail_DeleteItem(int CarrierID)
         {
             _repo.Delete(CarrierID);
+            Response.Redirect("~/Carriers/ViewList");
+        }
+
+        public void CarrierDetail_InsertItem()
+        {
+            var item = new assessment.Models.Carrier();
+            TryUpdateModel(item);
+            if (ModelState.IsValid)
+            {
+                // Save changes here
+                Carrier carrier = _repo.Create(item);
+                Response.Redirect("~/Carriers/ViewList");
+            }
         }
     }
 }
