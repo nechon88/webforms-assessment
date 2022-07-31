@@ -21,7 +21,6 @@ namespace assessment
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             var container = this.AddUnity();
-            //container.RegisterType<ICarrierRepo, CarrierRepoInMem>();
             DatabaseConfig dbConfig = new DatabaseConfig();
             dbConfig.ConnectionString = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
             container.RegisterInstance<IDatabaseConfig>(dbConfig);

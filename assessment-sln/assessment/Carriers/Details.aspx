@@ -188,5 +188,9 @@
             <asp:ValidationSummary ID="validationSummary" runat="server" ShowSummary="true" DisplayMode="BulletList"/>
             <asp:Button CssClass="btn btn-primary" runat="server" ID="saveButton" Text="Save" CommandName="Insert"/>
         </InsertItemTemplate>
+        <EmptyDataTemplate>
+            <h3>Carrier Not Found</h3>
+            <a runat="server" href="~/Carriers/ViewList">See all Carriers</a>
+        </EmptyDataTemplate>
     </asp:FormView>
 </asp:Content>

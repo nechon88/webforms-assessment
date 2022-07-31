@@ -23,7 +23,6 @@
                 </table>
             </LayoutTemplate>
             <ItemTemplate>
-                
                 <tr runat="server">
                     <td>
                         <asp:Label ID="CarrierNameLabel" runat="server"><%#:Item.CarrierName %></asp:Label>
@@ -62,22 +61,5 @@
             </ItemTemplate>
         </asp:ListView>
         <a class="btn btn-primary" href="/Carriers/Details.aspx?mode=insert">Add New</a>
-<%--        <asp:GridView runat="server" ID="CarriersGrid" DataKeyNames="CarrierID"
-            ItemType="assessment.Models.Carrier" SelectMethod="CarrierListView_GetData"
-            AutoGenerateColumns="false">
-            <Columns>
-                <asp:DynamicField DataField="CarrierName" />
-                <asp:DynamicField DataField="Address" />
-                <asp:DynamicField DataField="Address2" />
-                <asp:DynamicField DataField="City" />
-                <asp:DynamicField DataField="State" />
-                <asp:DynamicField DataField="Zip" />
-                <asp:DynamicField DataField="Contact" />
-                <asp:DynamicField DataField="Phone" />
-                <asp:DynamicField DataField="Fax" />
-                <asp:DynamicField DataField="Email" />
-            </Columns>
-
-        </asp:GridView>--%>
     </div>
 </asp:Content>
