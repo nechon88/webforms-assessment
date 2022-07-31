@@ -24,7 +24,7 @@ namespace assessment
             //container.RegisterType<ICarrierRepo, CarrierRepoInMem>();
             DatabaseConfig dbConfig = new DatabaseConfig();
             dbConfig.ConnectionString = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
-            container.RegisterInstance(dbConfig);
+            container.RegisterInstance<IDatabaseConfig>(dbConfig);
             //container.RegisterSingleton<ICarrierRepo, CarrierRepoInMem>();
             container.RegisterType<ICarrierRepo, CarrierRepoSql>();
         }

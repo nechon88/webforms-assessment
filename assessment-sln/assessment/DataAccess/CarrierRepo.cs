@@ -10,7 +10,7 @@ namespace assessment.DataAccess
 {
     public class CarrierRepoSql : ICarrierRepo
     {
-        private readonly DatabaseConfig _dbConfig;
+        private readonly IDatabaseConfig _dbConfig;
 
         private static Carrier GetFromReader(IDataReader rdr)
         {
@@ -30,7 +30,7 @@ namespace assessment.DataAccess
             };
         }
 
-        public CarrierRepoSql(DatabaseConfig dbConfig)
+        public CarrierRepoSql(IDatabaseConfig dbConfig)
         {
             _dbConfig = dbConfig;
         }
