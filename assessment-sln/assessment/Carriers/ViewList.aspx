@@ -1,65 +1,57 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ViewList.aspx.cs" Inherits="assessment.Carriers.ViewList" Debug="true" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ViewList.aspx.cs" Inherits="assessment.Carriers.ViewList" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Carriers</h1>
-    <div class="row">
+    <a class="btn btn-primary" href="/Carriers/Details.aspx?mode=insert">Add New</a>
+    <div runat="server" class="row" style="margin-top: 10px">
         <asp:ListView runat="server" ID="CarrierListView" DataKeyNames="CarrierID" 
-            ItemType="assessment.Models.Carrier" SelectMethod="CarrierListView_GetData">
+            ItemType="assessment.Models.Carrier" OnPagePropertiesChanging="OnPagePropertiesChanging">
             <LayoutTemplate>
-                <table class="table table-responsive" id="CarrierTable" runat="server">
-                    <tr runat="server">
-                        <th runat="server">Name</th>
-                        <th runat="server">Address</th>
-                        <th runat="server">Address2</th>
-                        <th runat="server">City</th>
-                        <th runat="server">State</th>
-                        <th runat="server">Zip</th>
-                        <th runat="server">Contact</th>
-                        <th runat="server">Phone</th>
-                        <th runat="server">Fax</th>
-                        <th runat="server">Email</th>
-                        <th runat="server">Actions</th>
-                    </tr>
-                    <tr runat="server" id="itemPlaceholder" />
-                </table>
+                <div runat="server" class="table-responsive">
+                    <table class="table table-small" id="CarrierTable" runat="server">
+                        <tr runat="server">
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Address2</th>
+                            <th>City</th>
+                            <th>State</th>
+                            <th>Zip</th>
+                            <th>Contact</th>
+                            <th>Phone</th>
+                            <th>Fax</th>
+                            <th>Email</th>
+                            <th>Details</th>
+                        </tr>
+                        <tr runat="server" ID="groupPlaceHolder"></tr>
+                    </table>
+                    <asp:DataPager ID="dataPager" runat="server" PagedControlID="CarrierListView" PageSize="10" >
+                        <Fields>
+                            <asp:NextPreviousPagerField ButtonType="Link" ShowFirstPageButton="false" ShowPreviousPageButton="true" ShowNextPageButton="false" />
+                            <asp:NumericPagerField ButtonType="Link" />
+                            <asp:NextPreviousPagerField ButtonType="Link" ShowFirstPageButton="false" ShowPreviousPageButton="false" ShowNextPageButton="true" />
+                        </Fields>
+                    </asp:DataPager>
+                 </div>
             </LayoutTemplate>
-            <ItemTemplate>
-                <tr runat="server">
-                    <td>
-                        <asp:Label ID="CarrierNameLabel" runat="server"><%#:Item.CarrierName %></asp:Label>
-                    </td>
-                    <td>
-                        <asp:Label ID="AddressLabel" runat="server" Text='<%# Eval("Address") %>'></asp:Label>
-                    </td>
-                    <td>
-                        <asp:Label ID="Address2Label" runat="server" Text='<%# Eval("Address2") %>'></asp:Label>
-                    </td>
-                    <td>
-                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("City") %>'></asp:Label>
-                    </td>
-                    <td>
-                        <asp:Label ID="Label2" runat="server" Text='<%# Eval("State") %>'></asp:Label>
-                    </td>
-                    <td>
-                        <asp:Label ID="Label3" runat="server" Text='<%# Eval("Zip") %>'></asp:Label>
-                    </td>
-                    <td>
-                        <asp:Label ID="Label4" runat="server" Text='<%# Eval("Contact") %>'></asp:Label>
-                    </td>
-                    <td>
-                        <asp:Label ID="Label5" runat="server" Text='<%# Eval("Phone") %>'></asp:Label>
-                    </td>
-                    <td>
-                        <asp:Label ID="Label6" runat="server" Text='<%# Eval("Fax") %>'></asp:Label>
-                    </td>
-                    <td>
-                        <asp:Label ID="Label7" runat="server" Text='<%# Eval("Email") %>'></asp:Label>
-                    </td>
-                    <td>
-                        <a class="btn btn-primary btn-sm" href="/Carriers/Details.aspx?id=<%#:Item.CarrierID %>">Details</a>
-                    </td>
+            <GroupTemplate>
+                <tr runat="server" id="itemPlaceHolderContainer">
+                    <td runat="server" id="itemPlaceholder"></td>
                 </tr>
+            </GroupTemplate>
+            <ItemTemplate>
+                <td><%#:Item.CarrierName %></td>
+                <td><%#:Item.Address %></td>
+                <td><%#:Item.Address2 %></td>
+                <td><%#:Item.City %></td>
+                <td><%#:Item.State %></td>
+                <td><%#:Item.Zip %></td>
+                <td><%#:Item.Contact %></td>
+                <td><%#:Item.Phone %></td>
+                <td><%#:Item.Fax %></td>
+                <td><%#:Item.Email %></td>
+                <td>
+                    <a class="btn btn-primary btn-sm" href="/Carriers/Details.aspx?id=<%#:Item.CarrierID %>">Details</a>
+                </td>
             </ItemTemplate>
         </asp:ListView>
-        <a class="btn btn-primary" href="/Carriers/Details.aspx?mode=insert">Add New</a>
     </div>
 </asp:Content>

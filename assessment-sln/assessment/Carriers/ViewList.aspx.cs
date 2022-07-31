@@ -21,7 +21,7 @@ namespace assessment.Carriers
 
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+            BindListView();
         }
 
         // The return type can be changed to IEnumerable, however to support
@@ -37,5 +37,16 @@ namespace assessment.Carriers
             return ret;
         }
 
+        private void BindListView()
+        {
+            CarrierListView.DataSource = _repo.GetAll();
+            CarrierListView.DataBind();
+        }
+
+        protected void OnPagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
+        {
+            (CarrierListView.FindControl("dataPager") as DataPager).SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
+            BindListView();
+        }
     }
 }

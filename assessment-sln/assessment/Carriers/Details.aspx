@@ -121,6 +121,7 @@
                 </div>
             </div>
             <asp:ValidationSummary ID="validationSummary" runat="server" ShowSummary="true" DisplayMode="BulletList"/>
+            <asp:Button CssClass="btn btn-secondary" runat="server" ID="cancelButton" Text="Cancel" CommandName="Cancel"/>
             <asp:Button CssClass="btn btn-primary" runat="server" ID="saveButton" Text="Save" CommandName="Update"/>
         </EditItemTemplate>
         <InsertItemTemplate>
