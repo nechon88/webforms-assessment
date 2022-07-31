@@ -1,14 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Details.aspx.cs" Inherits="assessment.Carriers.Details" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:FormView ID="CarrierDetail" 
-        runat="server" 
-        ItemType="assessment.Models.Carrier" 
+    <asp:FormView ID="CarrierDetail" runat="server" ItemType="assessment.Models.Carrier" RenderOuterTable="false" DataKeyNames="CarrierID"
         SelectMethod="CarrierDetail_GetItem" 
         UpdateMethod="CarrierDetail_UpdateItem"
         DeleteMethod="CarrierDetail_DeleteItem"
-        InsertMethod="CarrierDetail_InsertItem"
-        RenderOuterTable="false"
-        DataKeyNames="CarrierID">
+        InsertMethod="CarrierDetail_InsertItem">
         <ItemTemplate>
             <h1>Details</h1>
             <div class="row">
