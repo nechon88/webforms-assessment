@@ -2,6 +2,7 @@
 using Microsoft.AspNet.WebFormsDependencyInjection.Unity;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Optimization;
@@ -20,7 +21,12 @@ namespace assessment
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             var container = this.AddUnity();
-            container.RegisterType<ICarrierRepo, CarrierRepoInMem>();
+            //container.RegisterType<ICarrierRepo, CarrierRepoInMem>();
+            DatabaseConfig dbConfig = new DatabaseConfig();
+            dbConfig.ConnectionString = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
+            container.RegisterInstance(dbConfig);
+            //container.RegisterSingleton<ICarrierRepo, CarrierRepoInMem>();
+            container.RegisterType<ICarrierRepo, CarrierRepoSql>();
         }
     }
 }
